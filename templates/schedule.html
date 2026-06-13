@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Графік консультацій та співбесід</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='schedule.css') }}">
+</head>
+<body>
+<div class="doctor-schedule-wrap">
+    <!-- Логотип + назва -->
+    <div class="schedule-branding">
+        <div class="branding-logo">
+            <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Логотип коледжу">
+        </div>
+        <div class="branding-text">
+            <div class="branding-name">ВСП «ФКРКМ ДНУ ім. О. Гончара»</div>
+            <div class="branding-subtitle">Фаховий коледж ракетно-космічного машинобудування</div>
+        </div>
+    </div>
+
+    <!-- Заголовок -->
+    <div class="schedule-page-title">
+        <h1><p style="text-align: center;">Графік консультацій та співбесід</p></h1>
+    </div>
+
+    <div class="schedule-loader">
+        <div class="schedule-wrapper">
+            <!-- Навігаційні стрілки -->
+            <div class="schedule-nav">
+                <div class="nav-arrow" id="prevArrowBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="nav-arrow" id="nextArrowBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Контейнер днів -->
+            <div class="schedule-container" id="scheduleScrollContainer">
+                <div class="schedule-track" id="scheduleTrack"></div>
+            </div>
+
+            <!-- Кнопка "Показати більше" -->
+            <div class="show-more-btn">
+                <button class="show-more-button" id="toggleShowBtn">
+                    <span id="toggleBtnText">Показати більше слотів</span>
+                    <span class="arrow-icon" id="toggleArrowIcon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M8.59978 12.005C8.59978 11.785 8.67979 11.5849 8.83978 11.4249L14.0398 6.42495C14.3598 6.12495 14.8598 6.12494 15.1798 6.44494C15.4798 6.76494 15.4798 7.26496 15.1598 7.58496L10.5598 12.005L15.1598 16.425C15.4798 16.725 15.4798 17.245 15.1798 17.565C14.8798 17.885 14.3598 17.8849 14.0398 17.5849L8.83978 12.585C8.67978 12.425 8.59978 12.225 8.59978 12.005Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Футер -->
+        <div class="schedule-footer">
+            Приймальна комісія ВСП «ФКРКМ ДНУ» &copy; 2026 |
+            <a href="https://dkrkm.org.ua" target="_blank" style="color:#3a74a0;">dkrkm.org.ua</a>
+        </div>
+    </div>
+</div>
+
+ <!-- Передача даних з бд в JavaScript -->
+<script id="schedule-data" type="application/json">
+    {{ schedule_json|safe }}
+</script>
+<script src="{{ url_for('static', filename='schedule.js') }}"></script>
+</body>
+</html>
